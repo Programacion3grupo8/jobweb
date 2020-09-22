@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobweb", "Jobweb\Jobweb.csproj", "{2766843C-7502-4BC2-8EFB-99571BB46003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobweb.Tests", "Jobweb.Tests\Jobweb.Tests.csproj", "{13BB1C74-43F9-4DED-8862-26C302001E15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{F00AF4D7-504D-46AF-96BE-8B0D204D177D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2766843C-7502-4BC2-8EFB-99571BB46003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2766843C-7502-4BC2-8EFB-99571BB46003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2766843C-7502-4BC2-8EFB-99571BB46003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2766843C-7502-4BC2-8EFB-99571BB46003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13BB1C74-43F9-4DED-8862-26C302001E15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13BB1C74-43F9-4DED-8862-26C302001E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13BB1C74-43F9-4DED-8862-26C302001E15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13BB1C74-43F9-4DED-8862-26C302001E15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F00AF4D7-504D-46AF-96BE-8B0D204D177D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00AF4D7-504D-46AF-96BE-8B0D204D177D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00AF4D7-504D-46AF-96BE-8B0D204D177D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00AF4D7-504D-46AF-96BE-8B0D204D177D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1FCAAC3-B0B4-402D-907F-A4FBBC2D6A17}
+	EndGlobalSection
+EndGlobal
