@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `categoria`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categoria` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(50) DEFAULT NULL,
+  `categoria` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -69,7 +69,7 @@ CREATE TABLE `puestotrabajo` (
   `posicion` varchar(100) NOT NULL,
   `ubicacion` varchar(100) NOT NULL,
   `idCategoria` int NOT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` text DEFAULT NULL,
   `aplicar` text NOT NULL,
   `estado` bit(1) DEFAULT 1,
   `fechaPublicacion` datetime DEFAULT now(),
@@ -96,7 +96,7 @@ CREATE TABLE `usuario` (
   `password` varchar(50) NOT NULL,
   `tipo` enum('administrador','poster','user') DEFAULT 'user',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
