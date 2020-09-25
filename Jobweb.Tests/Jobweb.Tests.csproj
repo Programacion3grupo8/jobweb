@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{13BB1C74-43F9-4DED-8862-26C302001E15}</ProjectGuid>
+    <ProjectGuid>{AF665371-E927-475E-847C-11F6B36BCB35}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Jobweb.Tests</RootNamespace>
@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jobweb\Jobweb.csproj">
-      <Project>{2766843C-7502-4BC2-8EFB-99571BB46003}</Project>
+      <Project>{F54D37DD-04C1-4707-BC80-33697808AF7B}</Project>
       <Name>Jobweb</Name>
     </ProjectReference>
   </ItemGroup>
