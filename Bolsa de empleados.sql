@@ -46,6 +46,7 @@ CREATE TABLE `compañia` (
   `logo` text,
   `url` text,
   `email` varchar(200) DEFAULT NULL,
+  `nombre` varchar(200) NOT NULL,
   `idUsuario` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idUsuario` (`idUsuario`),
