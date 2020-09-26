@@ -16,9 +16,25 @@ namespace API.Controllers
         private JobWebDB db = new JobWebDB();
         // GET: api/PuestoTrabajo
         [HttpGet]
-        public IEnumerable<PuestoTrabajo> Get()
+        public dynamic Get(string search = "")
         {
-            return db.PuestoTrabajo.ToList();
+
+            if (search == "")
+            {
+                return db.PuestoTrabajo.ToList();
+            }
+            var q = db.PuestoTrabajo.Join(db.Compañia,
+                jobs => jobs.idCompañia,
+                com => com.id,
+                (jobs, com) => new { Jobs = jobs, Com = com }).Join(db.Categoria,
+                jobs => jobs.Jobs.idCategoria,
+                cat => cat.id,
+                (jobs, cat) => new { Jobs = jobs, Cat = cat }).Where(
+                q => q.Jobs.Jobs.posicion.Contains(search) ||
+                q.Jobs.Jobs.ubicacion.Contains(search) ||
+                q.Cat.categoria.Contains(search) ||
+                q.Jobs.Com.nombre.Contains(search)).ToList();
+            return q;
         }
 
         // GET: api/PuestoTrabajo/5
