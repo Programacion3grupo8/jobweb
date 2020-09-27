@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Compañia.cs" />
+    <Compile Include="Models\Listing.cs" />
     <Compile Include="Models\PuestoTrabajo.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
