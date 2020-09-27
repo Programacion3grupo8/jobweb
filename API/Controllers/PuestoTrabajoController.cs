@@ -15,35 +15,13 @@ namespace API.Controllers
     public class PuestoTrabajoController : ControllerBase
     {
         private JobWebDB db = new JobWebDB();
-        // GET: api/PuestoTrabajo
+        // GET: api/PuestoTrabajo or GET: api/PuestoTrabajo?search=query
         [HttpGet]
         public IEnumerable<Listing> Get(string search = "")
         {
 
             if (search == "")
             {
-                //List<Listing> all = db.PuestoTrabajo.Join(db.Compañia,
-                //jobs => jobs.idCompañia,
-                //com => com.id,
-                //(jobs, com) => new { Jobs = jobs, Com = com }).Join(db.Categoria,
-                //jobs => jobs.Jobs.idCategoria,
-                //cat => cat.id,
-                //(jobs, cat) => new { Jobs = jobs, Cat = cat }).Select(q => new
-                //{
-                //    Nombre = q.Jobs.Com.nombre,
-                //    Categoria = q.Cat.categoria,
-                //    Tipo = q.Jobs.Jobs.tipo,
-                //    Posicion = q.Jobs.Jobs.posicion,
-                //    Ubicacion = q.Jobs.Jobs.ubicacion,
-                //    Logo = q.Jobs.Com.logo
-                //}).AsEnumerable().Select(x => new Listing {
-                //    company = x.Nombre,
-                //    categoria = x.Categoria,
-                //    logo = x.Logo,
-                //    posicion = x.Posicion,
-                //    tipo = x.Tipo,
-                //    ubicacion = x.Ubicacion
-                //}).ToList();
 
                 List<Listing> all = (from job in db.PuestoTrabajo
                                      join com in db.Compañia on job.idCompañia equals com.id
