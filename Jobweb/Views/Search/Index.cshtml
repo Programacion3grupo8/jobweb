@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Jobweb.Models.PuestoTrabajo>
+﻿@model IEnumerable<Jobweb.Models.Listing>
 
 @{
     ViewBag.Title = "Busqueda";
@@ -14,6 +14,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
+                    <h6 class="card-title">@Html.DisplayFor(modelItem => item.company)</h6>
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.posicion)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.ubicacion)</p>
                     <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => item.tipo)</small></p>

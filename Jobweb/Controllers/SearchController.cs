@@ -18,7 +18,7 @@ namespace Jobweb.Controllers
         // GET: Search
         public async Task<ActionResult> Index(string search = "")
         {
-            List<PuestoTrabajo> Listings = new List<PuestoTrabajo>();
+            List<Listing> Listings = new List<Listing>();
 
             using (var client = new HttpClient())
             {
@@ -38,7 +38,7 @@ namespace Jobweb.Controllers
                     var ListingResponse = Res.Content.ReadAsStringAsync().Result;
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
-                    Listings = JsonConvert.DeserializeObject<List<PuestoTrabajo>>(ListingResponse);
+                    Listings = JsonConvert.DeserializeObject<List<Listing>>(ListingResponse);
 
                 }
             }
