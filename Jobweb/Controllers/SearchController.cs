@@ -29,7 +29,16 @@ namespace Jobweb.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync($"api/v1/PuestoTrabajo?search={search}");
+                HttpResponseMessage Res;
+                if(search == "")
+                {
+                    Res = await client.GetAsync($"api/v1/PuestoTrabajo");
+                }
+                else
+                {
+                    Res = await client.GetAsync($"api/v1/PuestoTrabajo?search={search}");
+
+                }
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
