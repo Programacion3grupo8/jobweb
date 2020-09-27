@@ -29,6 +29,7 @@ DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE `categoria` (
   `id` int NOT NULL AUTO_INCREMENT,
   `categoria` varchar(50) NOT NULL,
+  `disponibilidad` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
