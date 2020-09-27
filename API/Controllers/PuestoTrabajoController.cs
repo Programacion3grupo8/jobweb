@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
@@ -57,13 +56,15 @@ namespace API.Controllers
             //    q => q.Jobs.Jobs.posicion.Contains(search) ||
             //    q.Jobs.Jobs.ubicacion.Contains(search) ||
             //    q.Cat.categoria.Contains(search) ||
-            //    q.Jobs.Com.nombre.Contains(search)).Select(q => new { 
-            //        q.Jobs.Com.nombre, 
-            //        q.Cat.categoria, 
+            //    q.Jobs.Com.nombre.Contains(search)).Select(q => new
+            //    {
+            //        q.Jobs.Com.nombre,
+            //        q.Cat.categoria,
             //        q.Jobs.Jobs.tipo,
             //        q.Jobs.Jobs.posicion,
             //        q.Jobs.Jobs.ubicacion,
-            //        q.Jobs.Com.logo}).ToList();
+            //        q.Jobs.Com.logo
+            //    }).ToList();
 
             //return (IEnumerable<Listing>)q;
         }
