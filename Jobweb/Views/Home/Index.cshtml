@@ -7,21 +7,21 @@
 
 <h2>Puestos de trabajo</h2>
 
-<table class="table table-hover" style="margin-top: 20px;">
+<table class="table table-hover" data-page-length='10' style="margin-top: 20px;">
 
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.idCompañia)
             </th>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.posicion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ubicacion)
             </th>
-           
+
 
             <th></th>
         </tr>
@@ -43,8 +43,20 @@
 
 
             </tr>
-            <a class="btn btn-info" role="button" asp-action="" asp-route-id="">Mas trabajos</a>
+            
         }
     </tbody>
 </table>
+    
+<input id="Trabajos" class="btn btn-outline-info" onclick="start()" type="button" value="Mas Trabajos">
+
+<script>
+    function start() {
+
+        $('.table').attr('data-page-length', 20);
+        
+    }
+
+    
+</script>
 
