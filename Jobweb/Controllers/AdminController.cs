@@ -507,7 +507,6 @@ namespace Jobweb.Controllers
                     //Checking the response is successful or not which is sent using HttpClient  
                     if (Res.IsSuccessStatusCode)
                     {
-
                         return RedirectToAction("Settings");
                     }
                 }
