@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\API",
+    "\\API\\Controllers",
+    "\\Jobweb",
+    "\\Jobweb.Tests",
+    "\\Jobweb.Tests\\Controllers",
+    "\\Jobweb\\Controllers"
+  ],
+  "SelectedNode": "\\Jobweb.Tests\\Controllers\\HomeControllerTest.cs",
+  "PreviewInSolutionExplorer": false
+}
