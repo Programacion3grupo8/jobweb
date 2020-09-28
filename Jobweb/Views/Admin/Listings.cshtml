@@ -49,14 +49,14 @@
                         <i class="fas fa-times-circle fa-lg" style="color: red;"></i>
                     }
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fechaPublicacion)
-                </td>
+               
+
                 <td>
                     @Html.ActionLink("Editar", "EditListing", new { id = item.id }, new { @class = "btn btn-warning", style = "margin: 4px;" })
                     @Html.ActionLink("Eliminar", "DeleteListing", new { id = item.id }, new { @class = "btn btn-danger aDelete", style = "margin: 4px;" })
                 </td>
             </tr>
+            <a class="btn btn-info" role="button" asp-action="Details" asp-route-id="">More Jobs</a>
         }
     </tbody>
 </table>
