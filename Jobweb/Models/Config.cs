@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Jobweb.Models
 {
-    public class Categoria
+    public class Config
     {
         public int id { get; set; }
-        [Display(Name = "Categoria")]
-        public string categoria { get; set; }
-        [Display(Name = "Disponibilidad")]
-        public int disponibilidad { get; set; }
+        [Display(Name = "Nombre")]
+        public string nombre { get; set; }
+        [Display(Name = "Valor")]
+        public string valor { get; set; }
     }
 }

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class Categoria
+    public class Config
     {
         public int id { get; set; }
-        public string categoria { get; set; }
-        public int disponibilidad { get; set; }
+        public string nombre { get; set; }
+        public string valor { get; set; }
     }
 }
