@@ -9,5 +9,6 @@ namespace API.Models
     {
         public int id { get; set; }
         public string categoria { get; set; }
+        public int disponibilidad { get; set; }
     }
 }

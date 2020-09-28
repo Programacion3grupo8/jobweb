@@ -157,11 +157,109 @@ namespace Jobweb.Controllers
                 return View(err);
             }
         }
-        public ActionResult Categories()
+        public async Task<ActionResult> Categories()
         {
-            return View();
-        }
+            List<Categoria> Categories = new List<Categoria>();
 
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync("api/v1/Categoria");
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var CatResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    Categories = JsonConvert.DeserializeObject<List<Categoria>>(CatResponse);
+
+                }
+            }
+            return View(Categories);
+        }
+        public async Task<ActionResult> EditCategories(int id)
+        {
+            Categoria categoria = new Categoria();
+            try
+            {
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+
+                    client.DefaultRequestHeaders.Clear();
+                    //Define request data format  
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                    HttpResponseMessage Res = await client.GetAsync($"api/v1/Categoria/{id}");
+
+                    //Checking the response is successful or not which is sent using HttpClient  
+                    if (Res.IsSuccessStatusCode)
+                    {
+                        //Storing the response details recieved from web api   
+                        var CatResponse = Res.Content.ReadAsStringAsync().Result;
+
+                        //Deserializing the response recieved from web api and storing into the Employee list  
+                        categoria = JsonConvert.DeserializeObject<Categoria>(CatResponse);
+
+                    }
+                }
+                return View(categoria);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditCategories(Categoria cat)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View();
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+
+                    client.DefaultRequestHeaders.Clear();
+                    //Define request data format  
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var userContent = JsonConvert.SerializeObject(cat);
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(userContent);
+                    var byteContent = new ByteArrayContent(buffer);
+
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                    HttpResponseMessage Res = await client.PutAsync($"api/v1/Categoria/{cat.id}", byteContent);
+
+
+                    //Checking the response is successful or not which is sent using HttpClient  
+                    if (Res.IsSuccessStatusCode)
+                    {
+
+                        return RedirectToAction("Categories");
+                    }
+                }
+                return View(cat);
+            }
+            catch (Exception err)
+            {
+                return View(err);
+            }
+        }
         public ActionResult Listings()
         {
             return View();
