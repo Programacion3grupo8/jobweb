@@ -13,7 +13,7 @@ namespace Jobweb.Controllers
 {
     public class SearchController : Controller
     {
-        string Baseurl = "https://localhost:44309/";
+        string Baseurl = "https://localhost:44309/"; //API Base URL
 
         // GET: Search
         public async Task<ActionResult> Index(string search = "")
@@ -32,7 +32,7 @@ namespace Jobweb.Controllers
                 HttpResponseMessage Res;
                 if(search == "")
                 {
-                    Res = await client.GetAsync($"api/v1/PuestoTrabajo");
+                    Res = await client.GetAsync("api/v1/PuestoTrabajo");
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace Jobweb.Controllers
 
                 }
             }
-                return View(Listings);
+            return View(Listings);
         }
     }
 }
