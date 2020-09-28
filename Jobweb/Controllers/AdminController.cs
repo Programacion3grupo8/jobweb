@@ -1,4 +1,5 @@
-﻿using Jobweb.Models;
+﻿using Jobweb.Filtros;
+using Jobweb.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,15 @@ namespace Jobweb.Controllers
     public class AdminController : Controller
     {
         string Baseurl = "https://localhost:44309/"; //API Base URL
-        // GET: Admin
+                                                     // GET: Admin
+        [Autorizaciones(nivel: "administrador")]
         public ActionResult Dashboard()
         {
             return View();
         }
+
         // GET: Users
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> Users()
         {
             List<Usuario> Users = new List<Usuario>();
@@ -49,6 +53,8 @@ namespace Jobweb.Controllers
             return View(Users);
         }
 
+
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditUser(int id)
         {
             Usuario user = new Usuario();
@@ -84,7 +90,9 @@ namespace Jobweb.Controllers
                 return View();
             }
         }
+
         [HttpPost]
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditUser(Usuario user)
         {
 
@@ -126,6 +134,8 @@ namespace Jobweb.Controllers
             }
         }
 
+
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> DeleteUser(int id)
         {
             Usuario user = new Usuario();
@@ -157,15 +167,20 @@ namespace Jobweb.Controllers
                 return View(err);
             }
         }
+
+        [Autorizaciones(nivel: "administrador")]
         public ActionResult Categories()
         {
             return View();
         }
 
+        [Autorizaciones(nivel: "administrador")]
         public ActionResult Listings()
         {
             return View();
         }
+
+        [Autorizaciones(nivel: "administrador")]
         public ActionResult Settings()
         {
             return View();
