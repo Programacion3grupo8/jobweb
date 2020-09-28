@@ -264,9 +264,109 @@ namespace Jobweb.Controllers
         {
             return View();
         }
-        public ActionResult Settings()
+        public async Task<ActionResult> Settings()
         {
-            return View();
+            List<Config> Configs = new List<Config>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync("api/v1/Config");
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var ConfigResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    Configs = JsonConvert.DeserializeObject<List<Config>>(ConfigResponse);
+
+                }
+            }
+            return View(Configs);
+        }
+
+        public async Task<ActionResult> EditSettings(int id)
+        {
+            Config config = new Config();
+            try
+            {
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+
+                    client.DefaultRequestHeaders.Clear();
+                    //Define request data format  
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                    HttpResponseMessage Res = await client.GetAsync($"api/v1/Config/{id}");
+
+                    //Checking the response is successful or not which is sent using HttpClient  
+                    if (Res.IsSuccessStatusCode)
+                    {
+                        //Storing the response details recieved from web api   
+                        var ConfigResponse = Res.Content.ReadAsStringAsync().Result;
+
+                        //Deserializing the response recieved from web api and storing into the Employee list  
+                        config = JsonConvert.DeserializeObject<Config>(ConfigResponse);
+
+                    }
+                }
+                return View(config);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> EditSettings(Config config)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View();
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+
+                    client.DefaultRequestHeaders.Clear();
+                    //Define request data format  
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var userContent = JsonConvert.SerializeObject(config);
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(userContent);
+                    var byteContent = new ByteArrayContent(buffer);
+
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                    HttpResponseMessage Res = await client.PutAsync($"api/v1/Config/{config.id}", byteContent);
+
+
+                    //Checking the response is successful or not which is sent using HttpClient  
+                    if (Res.IsSuccessStatusCode)
+                    {
+
+                        return RedirectToAction("Settings");
+                    }
+                }
+                return View(config);
+            }
+            catch (Exception err)
+            {
+                return View(err);
+            }
         }
     }
 }

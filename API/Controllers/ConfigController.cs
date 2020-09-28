@@ -4,55 +4,55 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using API.Models;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
+using API.Models;
 
 namespace API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class CategoriaController : ControllerBase
+    public class ConfigController : ControllerBase
     {
         private JobWebDB db = new JobWebDB();
-        // GET: api/Categoria
+        // GET: api/Config
         [HttpGet]
-        public IEnumerable<Categoria> Get()
+        public IEnumerable<Config> Get()
         {
-            
-            return db.Categoria.ToList();
+
+            return db.Config.ToList();
         }
 
-        // GET: api/Categoria/5
+        // GET: api/Config/5
         [HttpGet("{id}")]
-        public Categoria Get(int id)
+        public Config Get(int id)
         {
-            return db.Categoria.Find(id);
+            return db.Config.Find(id);
         }
 
-        // POST: api/Categoria
+        // POST: api/Config
         [HttpPost]
-        public void Post([FromBody] Categoria value)
+        public void Post([FromBody] Config value)
         {
-            db.Categoria.Add(value);
+            db.Config.Add(value);
             db.SaveChanges();
         }
 
-        // PUT: api/Categoria/5
+        // PUT: api/Config/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Categoria value)
+        public void Put(int id, [FromBody] Config value)
         {
             value.id = id;
-            db.Categoria.Update(value);
+            db.Config.Update(value);
             db.SaveChanges();
         }
 
-        // DELETE: api/Categoria/5
+        // DELETE: api/Config/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Categoria value = db.Categoria.Find(id);
-            db.Categoria.Remove(value);
+            Config value = db.Config.Find(id);
+            db.Config.Remove(value);
             db.SaveChanges();
         }
     }
