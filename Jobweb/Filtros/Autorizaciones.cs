@@ -23,6 +23,7 @@ namespace Jobweb.Filtros
             try
             {
                 usr = (Usuario)HttpContext.Current.Session["User"];
+//<<<<<<< HEAD
                 //comprobando que existan usuario en sesion
                 if(usr != null)
                 {
@@ -30,20 +31,21 @@ namespace Jobweb.Filtros
                     usr.tipo = usr.tipo.ToLower();
                     nivelAcceso = nivelAcceso.ToLower();
                     //comparando si posee acceso
+
+//>>>>>>> Estable-01
                     if (usr.tipo != nivelAcceso && usr.tipo != "administrador")
                     {
                         filterContext.Result = new RedirectResult("~/Home/Index");
                     }
                 }
+//<<<<<<< HEAD
                 
-            }
-            catch (Exception)
+            }      
+            catch(Exception)
+//>>>>>>> Estable-01
             {
                 filterContext.Result = new RedirectResult("~/Home/Index");
             }
-
-
-
         }
     }
 }
