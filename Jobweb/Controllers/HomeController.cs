@@ -25,6 +25,7 @@ namespace Jobweb.Controllers
         [HttpPost]
         public async Task<ActionResult> Log(string user, string pass)
         {
+            ViewBag.username = user;
             Usuario usr = new Usuario();
             using (var client = new HttpClient())
             {
@@ -45,22 +46,30 @@ namespace Jobweb.Controllers
                     usr = JsonConvert.DeserializeObject<Usuario>(UsuarioResponse);
 
                 }
+              
+            }
+            if(usr != null) 
+            {
+                if (user == usr.username && pass == usr.password)
+                {
+                    Session["User"] = usr;
+                    return RedirectToAction("Index", "Home");
+                }
                 else
                 {
-                    ViewBag.Error = "El usuario no existe";
-                    return View();
+                    ViewBag.Error = "Contraseña Incorrecta";
                 }
-            }
-            if(user == usr.username && pass == usr.password)
+               
+                
+            }               
+            else
             {
-                Session["User"] = usr;
-                return RedirectToAction("Index","Home");
+                ViewBag.Error = "El usuario no existe";
             }
-            
-                ViewBag.Error = "Contraseña Incorrecta";
-                return View();
-            
-           
+            return View();
+
+
+
         }
 
         public ActionResult Logout()

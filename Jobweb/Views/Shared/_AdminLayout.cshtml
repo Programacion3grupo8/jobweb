@@ -20,6 +20,33 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="nav">
+                @{
+                    if (Session["User"] == null)
+                    {
+                        ViewBag.Action = "Log";
+                        ViewBag.atext = "Iniciar sesion";
+
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Jobweb.Models.Usuario usr = (Jobweb.Models.Usuario)Session["User"];
+                            usr.tipo = usr.tipo.ToLower();
+                            if (usr.tipo == "administrador")
+                            {
+                                <a class="nav-link" href="~/Admin/Dashboard">Dashboard</a>
+                            }
+                        }
+                        catch { }
+                        ViewBag.Action = "Logout";
+                        ViewBag.atext = "Cerrar sesion";
+                    }
+
+
+
+                }
+                <a class="nav-link" href="~/Home/@ViewBag.Action">@ViewBag.atext</a>
                 @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-inline" }))
                 {
                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar" name="search" aria-label="Search">
