@@ -16,9 +16,57 @@ namespace API.Controllers
         private JobWebDB db = new JobWebDB();
         // GET: api/PuestoTrabajo
         [HttpGet]
-        public IEnumerable<PuestoTrabajo> Get()
+        public IEnumerable<PuestoTrabajo> Get(string search = "")
         {
             return db.PuestoTrabajo.ToList();
+            //dynamic modelresults = new ExpandoObject();
+
+            //if (search == "")
+            //{
+            //    var all = db.PuestoTrabajo.Join(db.Compañia,
+            //    jobs => jobs.idCompañia,
+            //    com => com.id,
+            //    (jobs, com) => new { Jobs = jobs, Com = com }).Join(db.Categoria,
+            //    jobs => jobs.Jobs.idCategoria,
+            //    cat => cat.id,
+            //    (jobs, cat) => new { Jobs = jobs, Cat = cat }).Select(q => new {
+            //        q.Jobs.Com.nombre,
+            //        q.Cat.categoria,
+            //        q.Jobs.Jobs.tipo,
+            //        q.Jobs.Jobs.posicion,
+            //        q.Jobs.Jobs.ubicacion,
+            //        q.Jobs.Com.logo
+            //    }).ToList();
+
+            //    return (IEnumerable<Listing>)all;
+            //}
+
+            ////modelresults.Categories = db.Categoria.Where(q => q.categoria.Contains(search)).ToList();
+            ////modelresults.Locations = db.PuestoTrabajo.Where(q => q.ubicacion.Contains(search)).ToList();
+            ////modelresults.Positions = db.PuestoTrabajo.Where(q => q.posicion.Contains(search)).ToList();
+            ////modelresults.Companies = db.Compañia.Where(q => q.nombre.Contains(search)).ToList();
+
+            //var q = db.PuestoTrabajo.Join(db.Compañia,
+            //    jobs => jobs.idCompañia,
+            //    com => com.id,
+            //    (jobs, com) => new { Jobs = jobs, Com = com }).Join(db.Categoria,
+            //    jobs => jobs.Jobs.idCategoria,
+            //    cat => cat.id,
+            //    (jobs, cat) => new { Jobs = jobs, Cat = cat }).Where(
+            //    q => q.Jobs.Jobs.posicion.Contains(search) ||
+            //    q.Jobs.Jobs.ubicacion.Contains(search) ||
+            //    q.Cat.categoria.Contains(search) ||
+            //    q.Jobs.Com.nombre.Contains(search)).Select(q => new
+            //    {
+            //        q.Jobs.Com.nombre,
+            //        q.Cat.categoria,
+            //        q.Jobs.Jobs.tipo,
+            //        q.Jobs.Jobs.posicion,
+            //        q.Jobs.Jobs.ubicacion,
+            //        q.Jobs.Com.logo
+            //    }).ToList();
+
+            //return (IEnumerable<Listing>)q;
         }
 
         // GET: api/PuestoTrabajo/5

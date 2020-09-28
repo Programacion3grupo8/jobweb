@@ -16,8 +16,9 @@ namespace API.Data
         public virtual DbSet<Usuario> Usuario { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            string pass = Environment.GetEnvironmentVariable("AWS_PASS");
             optionsBuilder
-                .UseMySql("server=localhost;port=3306;user=root;password=;database=jobweb.db")
+                .UseMySql($"server=jobwebdb.c7e2jzuup8ra.us-east-2.rds.amazonaws.com;port=3306;user=admin;password={pass};database=jobweb.db")
                 .UseLoggerFactory(LoggerFactory.Create(b => b
                     .AddConsole()
                     .AddFilter(level => level >= LogLevel.Information)))
