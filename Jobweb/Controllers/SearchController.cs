@@ -32,11 +32,11 @@ namespace Jobweb.Controllers
                 HttpResponseMessage Res;
                 if(search == "")
                 {
-                    Res = await client.GetAsync("api/v1/PuestoTrabajo");
+                    Res = await client.GetAsync("api/v1/Listing");
                 }
                 else
                 {
-                    Res = await client.GetAsync($"api/v1/PuestoTrabajo?search={search}");
+                    Res = await client.GetAsync($"api/v1/Listing?search={search}");
 
                 }
 
