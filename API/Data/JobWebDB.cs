@@ -14,6 +14,7 @@ namespace API.Data
         public virtual DbSet<Compañia> Compañia { get; set; }
         public virtual DbSet<PuestoTrabajo> PuestoTrabajo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<configx> configx { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
