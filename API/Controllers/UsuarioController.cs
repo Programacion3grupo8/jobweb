@@ -18,7 +18,12 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<Usuario> Get()
         {
-            return db.Usuario.ToList();
+            return db.Usuario.AsEnumerable().Select(x => new Usuario
+            {
+                id = x.id,
+                username = x.username,
+                tipo = x.tipo
+            }).ToList();
         }
 
         // GET: api/Usuario/5
@@ -45,7 +50,7 @@ namespace API.Controllers
             db.SaveChanges();
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Usuario/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
