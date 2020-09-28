@@ -11,7 +11,7 @@ namespace API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class CompañiaController : ControllerBase
+    public class CompanyController : ControllerBase
     {
         private JobWebDB db = new JobWebDB();
         // GET: api/Compañia
