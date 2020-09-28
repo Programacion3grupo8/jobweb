@@ -8352,11 +8352,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\noeld\\Source\\Repos\\jobweb\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\noeld\\Source\\Repos\\jobweb\\API\\API.csproj",
+      "projectPath": "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\API.csproj",
       "packagesPath": "C:\\Users\\noeld\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\noeld\\Source\\Repos\\jobweb\\API\\obj\\",
+      "outputPath": "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\noeld\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,43 @@
-﻿
-@{
-    ViewBag.Title = "Listings";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+﻿@model IEnumerable<Jobweb.Models.PuestoTrabajo>
+
+@{ ViewBag.Title = "Listings";
+                Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
 
 <h2>Listings</h2>
 
+
+
+<table class="table table-hover" style="margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>
+                Ubicacion
+            </th>
+            <th>
+                Posicion
+            </th>
+            <th>
+                Compañia
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ubicacion)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.posicion)
+    </td>
+
+    <td>
+       
+    </td>
+
+</tr>}
+    </tbody>
+</table>
