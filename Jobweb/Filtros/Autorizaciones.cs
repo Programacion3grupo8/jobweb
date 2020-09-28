@@ -24,21 +24,21 @@ namespace Jobweb.Filtros
             {
                 usr = (Usuario)HttpContext.Current.Session["User"];
                 //quitando cualquier diferencia posible como es alguna letra en mayuscula
-                usr.tipo = usr.tipo.ToLower();
-                nivelAcceso = nivelAcceso.ToLower();
-                //comparando si posee acceso
-                if (usr.tipo != nivelAcceso && usr.tipo != "administrador")
+                if (usr != null)
                 {
-                    filterContext.Result = new RedirectResult("~/Home/Index");
+                    usr.tipo = usr.tipo.ToLower();
+                    nivelAcceso = nivelAcceso.ToLower(); 
+                //comparando si posee acceso
+                    if (usr.tipo != nivelAcceso && usr.tipo != "administrador")
+                    {
+                        filterContext.Result = new RedirectResult("~/Home/Index");
+                    }
                 }
-            }
-            catch (Exception)
+            }            
+            catch(Exception)
             {
                 filterContext.Result = new RedirectResult("~/Home/Index");
             }
-
-
-
         }
     }
 }
