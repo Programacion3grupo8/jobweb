@@ -197,6 +197,7 @@ namespace Jobweb.Controllers
             }
             return View(Categories);
         }
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditCategories(int id)
         {
             Categoria categoria = new Categoria();
@@ -233,6 +234,7 @@ namespace Jobweb.Controllers
             }
         }
         [HttpPost]
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditCategories(Categoria cat)
         {
             try
@@ -301,6 +303,7 @@ namespace Jobweb.Controllers
             }
             return View(Listings);
         }
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditListing(int id)
         {
             PuestoTrabajo listing = new PuestoTrabajo();
@@ -337,6 +340,7 @@ namespace Jobweb.Controllers
             }
         }
         [HttpPost]
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditListing(PuestoTrabajo listing)
         {
             try
@@ -376,6 +380,7 @@ namespace Jobweb.Controllers
                 return View(err);
             }
         }
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> DeleteListing(int id)
         {
 
@@ -436,7 +441,7 @@ namespace Jobweb.Controllers
             }
             return View(Configs);
         }
-
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditSettings(int id)
         {
             Config config = new Config();
@@ -473,6 +478,7 @@ namespace Jobweb.Controllers
             }
         }
         [HttpPost]
+        [Autorizaciones(nivel: "administrador")]
         public async Task<ActionResult> EditSettings(Config config)
         {
             try
