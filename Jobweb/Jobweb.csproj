@@ -123,11 +123,14 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Filtros\Autorizaciones.cs" />
+    <Compile Include="Filtros\Filtro.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Compañia.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Listing.cs" />
     <Compile Include="Models\PuestoTrabajo.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -177,9 +180,16 @@
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Home\Log.cshtml" />
+    <Content Include="Views\Admin\EditCategories.cshtml" />
+    <Content Include="Views\Admin\EditListing.cshtml" />
+    <Content Include="Views\Admin\EditSettings.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

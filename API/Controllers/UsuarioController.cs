@@ -18,19 +18,28 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<Usuario> Get()
         {
-            return db.Usuario.AsEnumerable().Select(x => new Usuario
-            {
-                id = x.id,
-                username = x.username,
-                tipo = x.tipo
-            }).ToList();
+           
+                return db.Usuario.AsEnumerable().Select(x => new Usuario
+                {
+                    id = x.id,
+                    username = x.username,
+                    tipo = x.tipo
+                }).ToList();
+            
+                
+
         }
 
         // GET: api/Usuario/5
         [HttpGet("{id}")]
-        public Usuario Get(int id)
+        public Usuario Get(int id, string user = null)
         {
-            return db.Usuario.Find(id);
+            if(user == null)
+                return db.Usuario.Find(id);
+            else
+                return (from usr in db.Usuario
+                        where usr.username == user
+                        select usr).FirstOrDefault();
         }
 
         // POST: api/Usuario

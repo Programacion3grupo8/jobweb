@@ -11,9 +11,12 @@ namespace API.Data
     public class JobWebDB : DbContext
     {
         public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<Config> Config { get; set; }
         public virtual DbSet<Compañia> Compañia { get; set; }
         public virtual DbSet<PuestoTrabajo> PuestoTrabajo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<configx> configx { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string pass = Environment.GetEnvironmentVariable("AWS_PASS");
