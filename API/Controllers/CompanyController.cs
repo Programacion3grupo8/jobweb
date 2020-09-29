@@ -23,9 +23,14 @@ namespace API.Controllers
 
         // GET: api/Compañia/5
         [HttpGet("{id}")]
-        public Compañia Get(int id)
+        public Compañia Get(int id, int idUser = 0)
         {
-            return db.Compañia.Find(id);
+            if(idUser == 0)
+                return db.Compañia.Find(id);
+            else 
+                return (from cp in db.Compañia
+                        where cp.idUsuario == idUser
+                        select cp).FirstOrDefault();
         }
 
         // POST: api/Compañia
