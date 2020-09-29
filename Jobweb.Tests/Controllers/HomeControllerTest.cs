@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jobweb;
 using Jobweb.Controllers;
+using System.Threading.Tasks;
 
 namespace Jobweb.Tests.Controllers
 {
@@ -19,10 +20,18 @@ namespace Jobweb.Tests.Controllers
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            Task<ActionResult> result = controller.Index() as Task<ActionResult>;
 
             // Assert
             Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void Log()
+        {
+            var controller = new HomeController();
+            var result = controller.Log() as ViewResult;
+            Assert.IsNotNull(result);
+        
         }
     }
 }
