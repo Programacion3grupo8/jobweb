@@ -191,7 +191,11 @@ namespace Jobweb.Controllers
                 ViewBag.Error = "Las contraseñas no coincieden";
                 return View();
             }
-
+            if(!logoImg.FileName.EndsWith(".jpg") || !logoImg.FileName.EndsWith(".png"))
+            {
+                ViewBag.Error = "Solo se aceptan imagenes de tipo .JPG o .PNG";
+                return View();
+            }
             user.tipo = user.tipo.ToLower();
             Usuario usr = null;
             //verificando que el usuario no existe
@@ -270,7 +274,7 @@ namespace Jobweb.Controllers
                         //creando ruta donde se guardara el logo                 
                         if (logoImg != null)
                         {
-                            company.logo = $"/Img/logo-{company.nombre}-{company.idUsuario}.jpg";
+                            company.logo = $"logo-{company.nombre}-{company.idUsuario}.jpg";
                         }
                         //Creando company
                         using (var client = new HttpClient())
