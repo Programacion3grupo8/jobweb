@@ -8,7 +8,7 @@
 
 <h2>Puestos de trabajo</h2>
 <br />
-@Int32.Parse(Model.Config.valor)
+
 @foreach (var cat in Model.Categories)
 {
     <h3><a href="/Search?search=@cat.categoria.ToLower()" style="margin-top:40px;">@cat.categoria</a></h3>

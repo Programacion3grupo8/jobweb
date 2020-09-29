@@ -117,7 +117,9 @@ namespace API.Controllers
                     Logo = q.Jobs.Com.logo,
                     Fecha = q.Jobs.Jobs.fechaPublicacion,
                     Descripcion = q.Jobs.Jobs.descripcion,
-                    Aplicar = q.Jobs.Jobs.aplicar
+                    Aplicar = q.Jobs.Jobs.aplicar,
+                    Email = q.Jobs.Com.email,
+                    Url = q.Jobs.Com.url
                 }).AsEnumerable().Select(x => new Listing
                 {
                     id = x.Id,
@@ -129,7 +131,9 @@ namespace API.Controllers
                     ubicacion = x.Ubicacion,
                     fechaPublicacion = x.Fecha,
                     descripcion = x.Descripcion,
-                    aplicar = x.Aplicar
+                    aplicar = x.Aplicar,
+                    email = x.Email,
+                    url = x.Url
                 }).ToList();
 
             return q[0];
