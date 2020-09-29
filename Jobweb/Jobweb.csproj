@@ -183,6 +183,7 @@
     <Content Include="Views\Admin\EditSettings.cshtml" />
     <Content Include="Views\Admin\EditListing.cshtml" />
     <Content Include="Views\Home\Puesto_Trabajo.cshtml" />
+    <Content Include="Views\Home\Detalles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
