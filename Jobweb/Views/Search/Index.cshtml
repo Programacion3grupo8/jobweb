@@ -11,12 +11,19 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="~/Assets/placeholder.png" class="card-img" alt="...">
+                        @if (item.logo != null && (item.logo.Contains("jpg") || item.logo.Contains("png")))
+                        {
+                            <img src="~/Assets/@item.logo" class="card-img">
+                        }
+                        else
+                        {
+                            <img src="~/Assets/placeholder.png" class="card-img">
+                        }
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h6 class="card-title">@Html.DisplayFor(modelItem => item.company)</h6>
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.posicion)</h5>
+                            <h5 class="card-title"><a href="/Job?id=@item.id">@Html.DisplayFor(modelItem => item.posicion)</a></h5>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.ubicacion)</p>
                             <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => item.tipo)</small></p>
                         </div>
