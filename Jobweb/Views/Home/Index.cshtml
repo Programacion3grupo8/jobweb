@@ -8,10 +8,10 @@
 
 <h2>Puestos de trabajo</h2>
 <br />
-
+@Int32.Parse(Model.Config.valor)
 @foreach (var cat in Model.Categories)
 {
-    <h3><a href="/Search?search=@cat.categoria" style="margin-top:40px;">@cat.categoria</a></h3>
+    <h3><a href="/Search?search=@cat.categoria.ToLower()" style="margin-top:40px;">@cat.categoria</a></h3>
     <table class="table table-hover" style="margin-top: 20px;">
 
         <thead>
@@ -28,11 +28,11 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i <= Int32.Parse(Model.Config.valor); i++)
+            @for (int i = 0; i < Int32.Parse(Model.Config.valor); i++)
             {
                 var listing = Model.Puesto[i];
 
-                if (listing.categoria == cat.categoria)
+                if (listing.categoria.ToLower() == cat.categoria.ToLower())
                 {
 
                     <tr>
