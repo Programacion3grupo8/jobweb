@@ -11,13 +11,17 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        @if (item.logo != null && (item.logo.Contains("jpg") || item.logo.Contains("png")))
-                        {
+                        @{ 
+                            string ruta = Server.MapPath("~");
+                            ruta += "\\Assets\\" + item.logo;
+                            if (item.logo != null && (item.logo.Contains("jpg") || item.logo.Contains("png")) && File.Exists(ruta))
+                            {
                             <img src="~/Assets/@item.logo" class="card-img">
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
                             <img src="~/Assets/placeholder.png" class="card-img">
+                            }
                         }
                     </div>
                     <div class="col-md-8">
