@@ -187,7 +187,7 @@ namespace Jobweb.Controllers
                 ViewBag.Error = "Las contraseñas no coincieden";
                 return View();
             }
-            if(!logoImg.FileName.EndsWith(".jpg") || !logoImg.FileName.EndsWith(".png"))
+            if(!logoImg.FileName.EndsWith(".jpg") && !logoImg.FileName.EndsWith(".png"))
             {
                 ViewBag.Error = "Solo se aceptan imagenes de tipo .JPG o .PNG";
                 return View();
