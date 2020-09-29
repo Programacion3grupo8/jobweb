@@ -270,7 +270,7 @@ namespace Jobweb.Controllers
                         //creando ruta donde se guardara el logo                 
                         if (logoImg != null)
                         {
-                            company.logo = $"/Assets/logo-{company.nombre}-{company.idUsuario}.jpg";
+                            company.logo = $"logo-{company.nombre}-{company.idUsuario}.jpg";
                         }
                         //Creando company
                         using (var client = new HttpClient())
