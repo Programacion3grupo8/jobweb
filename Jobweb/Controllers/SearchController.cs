@@ -13,7 +13,7 @@ namespace Jobweb.Controllers
 {
     public class SearchController : Controller
     {
-        string Baseurl = "https://localhost:44309/"; //API Base URL
+        string Baseurl = "https://jobwebapi.azurewebsites.net/"; //API Base URL
 
         // GET: Search
         public async Task<ActionResult> Index(string search = "")

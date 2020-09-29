@@ -18,7 +18,7 @@ namespace Jobweb.Controllers
 {
     public class HomeController : Controller
     {
-        string Baseurl = "https://localhost:44309/"; //API Base URL
+        string Baseurl = "https://jobwebapi.azurewebsites.net/"; //API Base URL
         static int listingCount = 0;
         static int categoryCount = 0;
 

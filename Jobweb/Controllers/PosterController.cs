@@ -15,7 +15,7 @@ namespace Jobweb.Controllers
 {
     public class PosterController : Controller
     {
-        string Baseurl = "https://localhost:44309/"; //API Base URL
+        string Baseurl = "https://jobwebapi.azurewebsites.net/"; //API Base URL
         // GET: Poster
         [Autorizaciones(nivel: "poster")]
         public async Task<ActionResult> PostAJob()
