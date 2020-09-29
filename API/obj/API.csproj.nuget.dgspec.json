@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Wayner De La Cruz\\Desktop\\ITLA\\6to Cuatrimestre\\Programacion III\\Modulo 2\\ProgramacionIII\\API\\API.csproj": {}
+    "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Wayner De La Cruz\\Desktop\\ITLA\\6to Cuatrimestre\\Programacion III\\Modulo 2\\ProgramacionIII\\API\\API.csproj": {
+    "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Wayner De La Cruz\\Desktop\\ITLA\\6to Cuatrimestre\\Programacion III\\Modulo 2\\ProgramacionIII\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Wayner De La Cruz\\Desktop\\ITLA\\6to Cuatrimestre\\Programacion III\\Modulo 2\\ProgramacionIII\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\Wayner De La Cruz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Wayner De La Cruz\\Desktop\\ITLA\\6to Cuatrimestre\\Programacion III\\Modulo 2\\ProgramacionIII\\API\\obj\\",
+        "projectPath": "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\jesus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Wayner De La Cruz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\jesus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -44,13 +40,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.0-preview1.19506.2, )"
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.8, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.0-preview1.19506.2, )"
+              "version": "[3.1.8, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -58,7 +58,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.0-preview1-19509-03, )"
+              "version": "[3.1.4, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
