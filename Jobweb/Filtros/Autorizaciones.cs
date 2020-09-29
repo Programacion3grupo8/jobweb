@@ -35,8 +35,12 @@ namespace Jobweb.Filtros
 //>>>>>>> Estable-01
                     if (usr.tipo != nivelAcceso && usr.tipo != "administrador")
                     {
-                        filterContext.Result = new RedirectResult("~/Home/Index");
+                        filterContext.Result = new RedirectResult("~/Home/Error");
                     }
+                }
+                else
+                {
+                    filterContext.Result = new RedirectResult("~/Home/Log");
                 }
 //<<<<<<< HEAD
                 
@@ -44,7 +48,7 @@ namespace Jobweb.Filtros
             catch(Exception)
 //>>>>>>> Estable-01
             {
-                filterContext.Result = new RedirectResult("~/Home/Index");
+                filterContext.Result = new RedirectResult("~/Home/Error");
             }
         }
     }
