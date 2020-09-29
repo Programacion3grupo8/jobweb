@@ -1,11 +1,55 @@
-﻿@model IEnumerable<Jobweb.Models.PuestoTrabajo>
+﻿@model dynamic
 
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<h2>Index</h2>
+<h2>Puestos de trabajo</h2>
+<br />
 
+@foreach (var cat in Model.Categories)
+{
+    <h3><a href="/Search?search=@cat.categoria" style="margin-top:40px;">@cat.categoria</a></h3>
+    <table class="table table-hover" style="margin-top: 20px;">
+
+        <thead>
+            <tr>
+                <th>
+                    Ubicacion
+                </th>
+                <th>
+                    Posicion
+                </th>
+                <th>
+                    Empresa
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i <= Int32.Parse(Model.Config.valor); i++)
+            {
+                var listing = Model.Puesto[i];
+
+                if (listing.categoria == cat.categoria)
+                {
+
+                    <tr>
+                        <td>
+                            @listing.ubicacion
+                        </td>
+                        <td>
+                            @listing.posicion
+                        </td>
+                        <td>
+                            @listing.company
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="float-right"><a href="/Search?search=@cat.categoria">Mas Trabajos...</a></div>
+}
 
 

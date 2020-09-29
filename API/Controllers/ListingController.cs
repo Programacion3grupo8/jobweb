@@ -34,7 +34,8 @@ namespace API.Controllers
                                          Posicion = job.posicion,
                                          Ubicacion = job.ubicacion,
                                          Logo = com.logo,
-                                         Estado = job.estado
+                                         Estado = job.estado,
+                                         Fecha = job.fechaPublicacion
                                      }).Where(q => q.Estado == true).AsEnumerable().Select(x => new Listing
                                      {
                                          company = x.Nombre,
@@ -42,7 +43,8 @@ namespace API.Controllers
                                          tipo = x.Tipo,
                                          posicion = x.Posicion,
                                          ubicacion = x.Ubicacion,
-                                         logo = x.Logo
+                                         logo = x.Logo,
+                                         fechaPublicacion = x.Fecha
                                      }).ToList();
 
                 return all;
@@ -67,6 +69,7 @@ namespace API.Controllers
                     Posicion = q.Jobs.Jobs.posicion,
                     Ubicacion = q.Jobs.Jobs.ubicacion,
                     Logo = q.Jobs.Com.logo,
+                    Fecha = q.Jobs.Jobs.fechaPublicacion
                 }).AsEnumerable().Select(x => new Listing
                 {
                     company = x.Nombre,
@@ -74,7 +77,8 @@ namespace API.Controllers
                     logo = x.Logo,
                     posicion = x.Posicion,
                     tipo = x.Tipo,
-                    ubicacion = x.Ubicacion
+                    ubicacion = x.Ubicacion,
+                    fechaPublicacion = x.Fecha
                 }).ToList();
 
             return q;

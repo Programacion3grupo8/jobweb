@@ -14,5 +14,6 @@ namespace Jobweb.Models
         public string posicion { get; set; }
         public string ubicacion { get; set; }
         public string logo { get; set; }
+        public DateTime fechaPublicacion { get; set; }
     }
 }
