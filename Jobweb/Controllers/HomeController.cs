@@ -228,8 +228,7 @@ namespace Jobweb.Controllers
                         //creando ruta donde se guardara el logo                 
                         if (logoImg != null)
                         {
-                            company.logo = Server.MapPath("~/Img");
-                            company.logo += $"/logo-{company.nombre}-{company.idUsuario}.jpg";
+                            company.logo = $"/Img/logo-{company.nombre}-{company.idUsuario}.jpg";
                         }
                         //Creando company
                         using (var client = new HttpClient())

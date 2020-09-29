@@ -7,24 +7,31 @@
 <div class="container">
     
     <span class="text-danger h5">@ViewBag.error</span>
-    <form class="form-group" method="post" action="~/Poster/PostAJob">
+    <form class="form-group" method="post" action="~/Poster/Confirm">
         <div class="form-group">
             <label for="tipo">Tipo de trabajo</label>
             <select class="form-control" name="tipo" id="tipo" placeholder="" required>
                 <option value="">Selecciona un tipo de trabajo</option>
                 @{
-                    switch (ViewBag.tipo)
+                    try
                     {
-                        case "full-time":
-                            ViewBag.ft = "selected";
-                            break;
-                        case "part-time":
-                            ViewBag.pt = "selected";
-                            break;
-                        case "freelance":
-                            ViewBag.fl = "selected";
-                            break;
+                        switch (ViewBag.tipo)
+                        {
+                            case "full-time":
+                                ViewBag.ft = "selected";
+                                break;
+                            case "part-time":
+                                ViewBag.pt = "selected";
+                                break;
+                            case "freelance":
+                                ViewBag.fl = "selected";
+                                break;
+                        }
                     }
+                    catch { }
+
+                    }
+
                 }
                 <option value="full-time" @ViewBag.ft>Full-time</option>
                 <option value="part-time" @ViewBag.pt>Part-time</option>
@@ -41,18 +48,18 @@
         </div>
         <div class="form-group">
             <label for="idCategoria">Categoria</label>
-            <select class="form-control" name="idCategoria" id="idCategoria" placeholder="" required>
+            <select class="form-control" name="categoria" id="idCategoria" placeholder="" required>
                 <option value="">Seleccion un categoria de trabajo</option>
                 @foreach (var categoria in ViewBag.categorias)
                 {
 
                     if (categoria.disponibilidad == 1)
                     {
-                        if (categoria.id == ViewBag.categoria)
+                        if (categoria.id == ViewBag.idCategoria)
                         {
                             ViewBag.ct = "selected";                           
                         }
-                        <option value="@categoria.id" @ViewBag.ct>@categoria.categoria</option>
+                        <option value="@categoria.categoria&@categoria.id" @ViewBag.ct>@categoria.categoria</option>
                     }
                 }
             </select>
