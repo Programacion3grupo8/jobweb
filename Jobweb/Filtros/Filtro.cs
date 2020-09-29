@@ -31,7 +31,7 @@ namespace Jobweb.Filtros
             }
             catch (Exception)
             {
-                filterContext.Result = new RedirectResult("~/Home/Log");
+                filterContext.Result = new RedirectResult("~/Home/Index");
             }
 
         }

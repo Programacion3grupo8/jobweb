@@ -233,5 +233,11 @@ namespace Jobweb.Controllers
                 
             
         }
+
+
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }
