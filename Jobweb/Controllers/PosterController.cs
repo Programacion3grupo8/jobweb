@@ -48,16 +48,60 @@ namespace Jobweb.Controllers
         }
         [HttpPost]
         [Autorizaciones(nivel: "poster")]
-        public async Task<ActionResult> PostAJob(PuestoTrabajo puesto)
+        public async Task<ActionResult> PostAJob(PuestoTrabajo puesto, Compañia company)
         {
-           //guardando valores
+           
+            //confirmando que no vengan datos vacios
+            if (company != null && puesto != null)
+            {
+                puesto.estado = true;
+                //agregando puesto
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+                    client.DefaultRequestHeaders.Clear();
+                    //Define request data format  
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var userContent = JsonConvert.SerializeObject(puesto);
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(userContent);
+                    var byteContent = new ByteArrayContent(buffer);
+                    //definiendo header
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    //Sending request to find web api REST service resource Usuario using HttpClient  
+                    HttpResponseMessage Res = await client.PostAsync($"api/v1/PuestoTrabajo", byteContent);
+                    //Checking the response is successful or not which is sent using HttpClient  
+                    if (Res.IsSuccessStatusCode)
+                    {                        
+                        ViewBag.mensaje = "Se ha agregado un nuevo puesto correctamente.";
+                        return RedirectToAction("Index","Home",ViewBag.mensaje);
+                    }
+
+                }
+            }
+           
+            return await PostAJob();
+        }
+        [Autorizaciones(nivel: "poster")]
+        public ActionResult Confirm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Autorizaciones(nivel: "poster")]
+        public async Task<ActionResult> Confirm(PuestoTrabajo puesto, string categoria)
+        {
+            //guardando valores
+            int.TryParse(categoria.Split('&')[1], out int idCategoria);
+            puesto.idCategoria = idCategoria;
+            ViewBag.categoria = categoria.Split('&')[0];
             ViewBag.tipo = puesto.tipo;
-            ViewBag.posicion = puesto.posicion;
+            ViewBag.idCategoria = puesto.idCategoria;
             ViewBag.ubicacion = puesto.ubicacion;
-            ViewBag.ubicacion = puesto.ubicacion;
-            ViewBag.categoria = puesto.idCategoria;
-            ViewBag.descripcion = puesto.descripcion;
             ViewBag.aplicar = puesto.aplicar;
+            ViewBag.posicion = puesto.posicion;
             Usuario user = (Usuario)Session["User"];
             if (user.tipo != "poster")
             {
@@ -67,7 +111,8 @@ namespace Jobweb.Controllers
             //estableciendo fecha y estado
             puesto.fechaPublicacion = DateTime.Now;
             puesto.estado = true;
-            
+            ViewBag.fechaPublicacion = puesto.fechaPublicacion;
+
             Compañia cp = null;
             //buscando la compañia del usuario actual
             using (var client = new HttpClient())
@@ -96,33 +141,16 @@ namespace Jobweb.Controllers
             if (cp != null)
             {
                 puesto.idCompañia = cp.id;
-                //agregando puesto
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(Baseurl);
-                    client.DefaultRequestHeaders.Clear();
-                    //Define request data format  
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    var userContent = JsonConvert.SerializeObject(puesto);
-                    var buffer = System.Text.Encoding.UTF8.GetBytes(userContent);
-                    var byteContent = new ByteArrayContent(buffer);
-                    //definiendo header
-                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                    //Sending request to find web api REST service resource Usuario using HttpClient  
-                    HttpResponseMessage Res = await client.PostAsync($"api/v1/PuestoTrabajo", byteContent);
-                    //Checking the response is successful or not which is sent using HttpClient  
-                    if (Res.IsSuccessStatusCode)
-                    {                        
-                        ViewBag.mensaje = "Se ha agregado un nuevo puesto correctamente.";
-                        return RedirectToAction("Index","Home");
-                    }
-
-                }
+                ViewBag.puesto = puesto;
+                ViewBag.company = cp;
+                return View();
             }
-           
-            return await PostAJob();
+            else
+            {
+                ViewBag.error = "Se ha producido un error al intentar obtener la empresa registrada con su usuario. Intente nuevamente.";
+                return RedirectToAction("PostAJob","Poster",ViewBag);
+            }
+                
         }
     }
 }

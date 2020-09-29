@@ -189,6 +189,7 @@
     <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Poster\PostAJob.cshtml" />
+    <Content Include="Views\Poster\Confirm.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

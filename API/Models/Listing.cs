@@ -16,6 +16,8 @@ namespace API.Models
         public string logo { get; set; }
         public string descripcion { get; set; }
         public string aplicar { get; set; }
+        public string url { get; set; }
+        public string email { get; set; }
         public DateTime fechaPublicacion { get; set; }
     }
 }
