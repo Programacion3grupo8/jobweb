@@ -19,9 +19,33 @@ namespace Jobweb.Controllers
     {
         string Baseurl = "https://localhost:44309/"; //API Base URL
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            List<PuestoTrabajo> Puesto = new List<PuestoTrabajo>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                HttpResponseMessage Res = await client.GetAsync("api/v1/PuestoTrabajo");
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var PuestoResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    Puesto = JsonConvert.DeserializeObject<List<PuestoTrabajo>>(PuestoResponse);
+
+                }
+            }
+            return View(Puesto);
         }
 
         public async Task<ActionResult> Puesto_Trabajo()

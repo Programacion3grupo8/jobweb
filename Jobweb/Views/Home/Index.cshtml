@@ -4,8 +4,59 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<span class="text-success h5">@ViewBag.mensaje</span>
 
 <h2>Index</h2>
 
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idCompañia)
+            </th>
 
+            <th>
+                @Html.DisplayNameFor(model => model.posicion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ubicacion)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idCompañia)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.posicion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ubicacion)
+                </td>
+
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<input id="Trabajos" class="btn btn-outline-info" onclick="start()" type="button" value="Mas Trabajos">
+
+<script>
+    function start() {
+
+        $('.table').attr('data-page-length', 20);
+
+    }
+
+
+</script>
 
