@@ -19,6 +19,8 @@ namespace Jobweb.Controllers
     public class HomeController : Controller
     {
         string Baseurl = "https://localhost:44309/"; //API Base URL
+        static int listingCount = 0;
+        static int categoryCount = 0;
 
         public async Task<ActionResult> Index()
         {
@@ -47,6 +49,7 @@ namespace Jobweb.Controllers
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     Puesto = JsonConvert.DeserializeObject<List<Listing>>(PuestoResponse);
                     Puesto = Puesto.OrderBy(d => d.fechaPublicacion).ToList();
+                    listingCount = Puesto.Count();
                     model.Puesto = Puesto;
                 }
 
@@ -64,6 +67,7 @@ namespace Jobweb.Controllers
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     Categories = JsonConvert.DeserializeObject<List<Categoria>>(CatResponse);
                     Categories = Categories.Where(c => c.disponibilidad == 1).ToList();
+                    categoryCount = Categories.Count();
                     model.Categories = Categories;
                 }
 
@@ -297,15 +301,22 @@ namespace Jobweb.Controllers
                 }
                 return await Log(user.username, user.password);
 
-            }
-                
-            
+            }                            
         }
-
 
         public ActionResult Error()
         {
             return View();
+        }
+
+        public static int GetListingCount()
+        {
+            return listingCount;
+        }
+
+        public static int GetCategoryCount()
+        {
+            return categoryCount;
         }
     }
 }

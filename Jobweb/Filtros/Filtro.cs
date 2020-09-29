@@ -22,7 +22,7 @@ namespace Jobweb.Filtros
                 if (usr == null)
                 {
 
-                    if (filterContext.Controller is HomeController == false && filterContext.Controller is SearchController == false)
+                    if (filterContext.Controller is HomeController == false && filterContext.Controller is SearchController == false && filterContext.Controller is JobController == false)
                     {
                         filterContext.HttpContext.Response.Redirect("/Home/Log");
                     }
