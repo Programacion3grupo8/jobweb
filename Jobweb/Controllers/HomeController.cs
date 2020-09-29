@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.IO;
 using System.Web.UI.WebControls;
 using System.Xml.Schema;
+using System.Dynamic;
 
 namespace Jobweb.Controllers
 {
@@ -21,7 +22,10 @@ namespace Jobweb.Controllers
 
         public async Task<ActionResult> Index()
         {
-            List<PuestoTrabajo> Puesto = new List<PuestoTrabajo>();
+            dynamic model = new ExpandoObject();
+            List<Listing> Puesto = new List<Listing>();
+            List<Categoria> Categories = new List<Categoria>();
+            Config puestosMaximos = new Config();
 
             using (var client = new HttpClient())
             {
@@ -32,7 +36,7 @@ namespace Jobweb.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/v1/PuestoTrabajo");
+                HttpResponseMessage Res = await client.GetAsync("api/v1/Listing");
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
@@ -41,11 +45,45 @@ namespace Jobweb.Controllers
                     var PuestoResponse = Res.Content.ReadAsStringAsync().Result;
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
-                    Puesto = JsonConvert.DeserializeObject<List<PuestoTrabajo>>(PuestoResponse);
+                    Puesto = JsonConvert.DeserializeObject<List<Listing>>(PuestoResponse);
+                    Puesto = Puesto.OrderBy(d => d.fechaPublicacion).ToList();
+                    model.Puesto = Puesto;
+                }
 
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                Res = await client.GetAsync("api/v1/Categoria");
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var CatResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    Categories = JsonConvert.DeserializeObject<List<Categoria>>(CatResponse);
+                    Categories = Categories.Where(c => c.disponibilidad == 1).ToList();
+                    model.Categories = Categories;
+                }
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                Res = await client.GetAsync("api/v1/Config/4");
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var CatResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    puestosMaximos = JsonConvert.DeserializeObject<Config>(CatResponse);
+                    model.Config = puestosMaximos;
                 }
             }
-            return View(Puesto);
+            return View(model);
         }
 
         public async Task<ActionResult> Puesto_Trabajo()

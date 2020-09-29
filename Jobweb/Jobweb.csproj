@@ -124,6 +124,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PosterController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Filtros\Autorizaciones.cs" />
     <Compile Include="Filtros\Filtro.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,6 +189,7 @@
     <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Poster\PostAJob.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

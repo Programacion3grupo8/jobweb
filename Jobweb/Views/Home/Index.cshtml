@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Jobweb.Models.PuestoTrabajo>
+﻿@model dynamic
 
 
 @{
@@ -6,57 +6,51 @@
 }
 <span class="text-success h5">@ViewBag.mensaje</span>
 
-<h2>Index</h2>
+<h2>Puestos de trabajo</h2>
+<br />
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.idCompañia)
-            </th>
+@foreach (var cat in Model.Categories)
+{
+    <h3><a href="/Search?search=@cat.categoria" style="margin-top:40px;">@cat.categoria</a></h3>
+    <table class="table table-hover" style="margin-top: 20px;">
 
-            <th>
-                @Html.DisplayNameFor(model => model.posicion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ubicacion)
-            </th>
-
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idCompañia)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.posicion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ubicacion)
-                </td>
-
-
+                <th>
+                    Ubicacion
+                </th>
+                <th>
+                    Posicion
+                </th>
+                <th>
+                    Empresa
+                </th>
             </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i <= Int32.Parse(Model.Config.valor); i++)
+            {
+                var listing = Model.Puesto[i];
 
-        }
-    </tbody>
-</table>
+                if (listing.categoria == cat.categoria)
+                {
 
-<input id="Trabajos" class="btn btn-outline-info" onclick="start()" type="button" value="Mas Trabajos">
+                    <tr>
+                        <td>
+                            @listing.ubicacion
+                        </td>
+                        <td>
+                            <a href="/Job?id=@listing.id">@listing.posicion</a>
+</td>
+                        <td>
+                            @listing.company
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="float-right"><a href="/Search?search=@cat.categoria">Mas Trabajos...</a></div>
+}
 
-<script>
-    function start() {
-
-        $('.table').attr('data-page-length', 20);
-
-    }
-
-
-</script>
 
