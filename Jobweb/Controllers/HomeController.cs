@@ -14,7 +14,13 @@ namespace Jobweb.Controllers
     public class HomeController : Controller
     {
         string Baseurl = "https://localhost:44309/"; //API Base URL
-        public async Task<ActionResult> Index()
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> Puesto_Trabajo()
         {
             List<PuestoTrabajo> Puesto = new List<PuestoTrabajo>();
 
