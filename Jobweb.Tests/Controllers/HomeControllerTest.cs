@@ -7,6 +7,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Jobweb;
 using Jobweb.Controllers;
 using System.Threading.Tasks;
+using Jobweb.Models;
+using System.Dynamic;
 
 namespace Jobweb.Tests.Controllers
 {
@@ -14,16 +16,18 @@ namespace Jobweb.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public async Task IndexAsync()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            Task<ActionResult> result = controller.Index() as Task<ActionResult>;
-
+            var result = await controller.Index() as ViewResult;
+            dynamic model = (ExpandoObject) result.ViewData.Model;
             // Assert
             Assert.IsNotNull(result);
+            Assert.IsNotNull(model);
+            Assert.IsTrue(Int32.Parse(model.Config.valor) > 0);
         }
         [TestMethod]
         public void Log()
@@ -32,6 +36,24 @@ namespace Jobweb.Tests.Controllers
             var result = controller.Log() as ViewResult;
             Assert.IsNotNull(result);
         
+        }
+
+        [TestMethod]
+        public void Signup()
+        {
+            var controller = new HomeController();
+            var result = controller.Signup() as ViewResult;
+            Assert.IsNotNull(result);
+
+        }
+
+        [TestMethod]
+        public void Error()
+        {
+            var controller = new HomeController();
+            var result = controller.Error() as ViewResult;
+            Assert.IsNotNull(result);
+
         }
     }
 }
