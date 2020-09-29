@@ -7,14 +7,18 @@
 
 <div class="row justify-content-start" style="margin-bottom: 20px;">
     <div class="col-sm">
-        @if (Model.logo != null && (Model.logo.Contains("jpg") || Model.logo.Contains("png")))
-        {
+        @{ 
+            string ruta = Server.MapPath("~");
+            ruta += "\\Assets\\" + Model.logo;
+            if (Model.logo != null && (Model.logo.Contains("jpg") || Model.logo.Contains("png")) && File.Exists(ruta))
+            {
             <img src="~/Assets/@Model.logo" style="max-height: 100px; max-width: 100px;">
-        }
-        else
-        {
+            }
+            else
+            {
             <img src="~/Assets/placeholder.png" style="max-height: 200px; max-width: 200px;">
-        }
+            }
+         }
     </div>
     <div class="col-8">
         <h2>@Model.company</h2>
