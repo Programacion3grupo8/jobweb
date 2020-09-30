@@ -11,6 +11,8 @@
 
 @foreach (var cat in Model.Categories)
 {
+    int cont = Int32.Parse(Model.Config.valor);
+
     <h3><a href="/Search?search=@cat.categoria.ToLower()" style="margin-top:40px;">@cat.categoria</a></h3>
     <table class="table table-hover" style="margin-top: 20px;">
 
@@ -28,24 +30,26 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < Int32.Parse(Model.Config.valor); i++)
-            {
-                var listing = Model.Puesto[i];
-
+            @foreach(var listing in Model.Puesto)
+            { 
                 if (listing.categoria.ToLower() == cat.categoria.ToLower())
                 {
-
+                    cont--;
                     <tr>
                         <td>
                             @listing.ubicacion
                         </td>
                         <td>
                             <a href="/Job?id=@listing.id">@listing.posicion</a>
-</td>
+                        </td>
                         <td>
                             @listing.company
                         </td>
                     </tr>
+                }
+                if(cont <= 0)
+                {
+                    break;
                 }
             }
         </tbody>
