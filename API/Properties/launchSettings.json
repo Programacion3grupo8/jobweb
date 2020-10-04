@@ -11,6 +11,7 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
+      "launchBrowser": true,
       "launchUrl": "api/v1/PuestoTrabajo",
       "environmentVariables": {
         "AWS_PASS": "masterjobweb08",

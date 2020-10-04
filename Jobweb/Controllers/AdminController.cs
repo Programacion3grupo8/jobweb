@@ -14,7 +14,7 @@ namespace Jobweb.Controllers
 {
     public class AdminController : Controller
     {
-        string Baseurl = "https://localhost:44309/"; //API Base URL
+        string Baseurl = "https://jobwebapi.azurewebsites.net/"; //API Base URL
                                                      // GET: Admin
         [Autorizaciones(nivel: "administrador")]
         public ActionResult Dashboard()

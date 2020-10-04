@@ -18,7 +18,9 @@ namespace Jobweb.Controllers
 {
     public class HomeController : Controller
     {
-        string Baseurl = "https://localhost:44309/"; //API Base URL
+        string Baseurl = "https://jobwebapi.azurewebsites.net/"; //API Base URL
+        static int listingCount = 0;
+        static int categoryCount = 0;
 
         public async Task<ActionResult> Index()
         {
@@ -47,6 +49,7 @@ namespace Jobweb.Controllers
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     Puesto = JsonConvert.DeserializeObject<List<Listing>>(PuestoResponse);
                     Puesto = Puesto.OrderBy(d => d.fechaPublicacion).ToList();
+                    listingCount = Puesto.Count();
                     model.Puesto = Puesto;
                 }
 
@@ -64,6 +67,7 @@ namespace Jobweb.Controllers
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     Categories = JsonConvert.DeserializeObject<List<Categoria>>(CatResponse);
                     Categories = Categories.Where(c => c.disponibilidad == 1).ToList();
+                    categoryCount = Categories.Count();
                     model.Categories = Categories;
                 }
 
@@ -86,34 +90,6 @@ namespace Jobweb.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> Puesto_Trabajo()
-        {
-            List<PuestoTrabajo> Puesto = new List<PuestoTrabajo>();
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(Baseurl);
-
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/v1/PuestoTrabajo");
-
-                //Checking the response is successful or not which is sent using HttpClient  
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api   
-                    var PuestoResponse = Res.Content.ReadAsStringAsync().Result;
-
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                    Puesto = JsonConvert.DeserializeObject<List<PuestoTrabajo>>(PuestoResponse);
-
-                }
-            }
-            return View(Puesto);
-        }
         public ActionResult Log()
         {
             return View();
@@ -300,15 +276,22 @@ namespace Jobweb.Controllers
                 }
                 return await Log(user.username, user.password);
 
-            }
-                
-            
+            }                            
         }
-
 
         public ActionResult Error()
         {
             return View();
+        }
+
+        public static int GetListingCount()
+        {
+            return listingCount;
+        }
+
+        public static int GetCategoryCount()
+        {
+            return categoryCount;
         }
     }
 }
