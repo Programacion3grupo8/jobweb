@@ -8,14 +8,19 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.Expressions;
 
 namespace Jobweb.Controllers
 {
+     
     public class SearchController : Controller
     {
         string Baseurl = "https://jobwebapi.azurewebsites.net/"; //API Base URL
+        private int page;
 
         // GET: Search
+
         public async Task<ActionResult> Index(string search = "")
         {
             List<Listing> Listings = new List<Listing>();
@@ -50,8 +55,22 @@ namespace Jobweb.Controllers
                     Listings = JsonConvert.DeserializeObject<List<Listing>>(ListingResponse);
 
                 }
+
+
+                var blogsView = new ViewModel
+                {
+                    BlogPerPage = 5,
+                    Blogs = Listings,
+                    CurrentPage = page
+                };
+               
             }
             return View(Listings);
         }
+
+
+        
+
+
     }
 }

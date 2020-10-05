@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj": {}
+    "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj": {
+    "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\jesus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jesus\\source\\repos\\Jobweb\\API\\obj\\",
+        "projectPath": "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\noeld\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\noeld\\source\\repos\\jobweb\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jesus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\noeld\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

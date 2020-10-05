@@ -18,6 +18,7 @@ namespace Jobweb.Models
         public string aplicar { get; set; }
         public string url { get; set; }
         public string email { get; set; }
+
         public DateTime fechaPublicacion { get; set; }
     }
 }
