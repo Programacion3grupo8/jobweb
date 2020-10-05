@@ -153,17 +153,19 @@ namespace Jobweb.Controllers
         [HttpPost]
         public async Task<ActionResult> Signup(Usuario user, string password2, Compañia company = null, HttpPostedFileBase logoImg = null)
         {
+
             ViewBag.user = user.username;
-            ViewBag.tipo = user.tipo;
+            ViewBag.tipo = user.tipo;             
             ViewBag.nombre = company.nombre;
             ViewBag.correo = company.email;
-            ViewBag.url = company.url;
-            if(user.password != password2)
+            ViewBag.url = company.url; 
+
+            if(user != null && password2 != null && (user.password != password2))
             {
                 ViewBag.Error = "Las contraseñas no coincieden";
                 return View();
             }
-            if(!logoImg.FileName.EndsWith(".jpg") && !logoImg.FileName.EndsWith(".png"))
+            if(logoImg != null && !logoImg.FileName.EndsWith(".jpg") && !logoImg.FileName.EndsWith(".png"))
             {
                 ViewBag.Error = "Solo se aceptan imagenes de tipo .JPG o .PNG";
                 return View();
@@ -267,15 +269,18 @@ namespace Jobweb.Controllers
                             if (Res.IsSuccessStatusCode)
                             {
                                 if(logoImg != null)
-                                    logoImg.SaveAs(company.logo);                               
-                                
+                                {
+                                    string ruta = Server.MapPath("~");
+                                    ruta += "\\Assets\\" + company.logo;
+                                    logoImg.SaveAs(ruta);                               
+                                }
                             }
                         }
 
                     }
                 }
-                return await Log(user.username, user.password);
 
+                return RedirectToAction("Log", "Home");
             }                            
         }
 

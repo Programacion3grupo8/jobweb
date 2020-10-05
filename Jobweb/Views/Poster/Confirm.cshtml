@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Confirmacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Confirmacion</h2>
@@ -45,7 +46,7 @@
         </div>
         <div class="form-group">
             <label for="fecha">Fecha de publicacion</label>
-            <textarea readonly class="form-control" name="fechaPublicacion" id="fecha" placeholder="Fecha de publicacion" rows="3" required>@ViewBag.puesto.fechaPublicacion</textarea>
+            <input type="text" class="form-control" value="@ViewBag.puesto.fechaPublicacion" readonly/>
         </div>
             </div>
             <div class="col-6">

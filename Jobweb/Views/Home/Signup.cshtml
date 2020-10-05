@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
@@ -23,17 +24,8 @@
         <div class="form-group">
             <label for="tipo">Tipo</label>
             <select name="tipo" id="tipo" required class="form-control" >
-                <option value="">Elije un tipo de usuario</option>
-                @if (ViewBag.tipo == "user")
-                {
-                    ViewBag.tipouser = "selected";
-                }
-                else
-                {
-                    ViewBag.tipoposter = "selected";
-                }
-                <option value="user" @ViewBag.tipouser>User</option>
-                <option value="poster" @ViewBag.tipoposter>Poster</option>
+                <option value="user" selected>User</option>
+                <option value="poster" >Poster</option>
             </select>
 
         </div>
@@ -63,7 +55,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Registar</button>
+        <button type="submit" class="btn btn-success">Continuar</button>
     </form>
 
 </div>
