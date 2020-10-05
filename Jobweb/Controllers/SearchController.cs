@@ -17,13 +17,12 @@ namespace Jobweb.Controllers
     public class SearchController : Controller
     {
         string Baseurl = "https://jobwebapi.azurewebsites.net/"; //API Base URL
-        private int page;
-
+        
         // GET: Search
-
-        public async Task<ActionResult> Index(string search = "")
+        public async Task<ActionResult> Index(string search = "", int page = 1)
         {
             List<Listing> Listings = new List<Listing>();
+            var searchView = new Search();
 
             using (var client = new HttpClient())
             {
@@ -53,19 +52,17 @@ namespace Jobweb.Controllers
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     Listings = JsonConvert.DeserializeObject<List<Listing>>(ListingResponse);
+                    Listings.OrderBy(d => d.fechaPublicacion).ToList();
 
-                }
-
-
-                var blogsView = new ViewModel
-                {
-                    BlogPerPage = 5,
-                    Blogs = Listings,
-                    CurrentPage = page
-                };
-               
+                    searchView = new Search
+                    {
+                        ListingPerPage = 20,
+                        Listings = Listings,
+                        CurrentPage = page
+                    };
+                }               
             }
-            return View(Listings);
+            return View(searchView);
         }
 
 
