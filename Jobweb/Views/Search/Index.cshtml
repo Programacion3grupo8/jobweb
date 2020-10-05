@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Jobweb.Models.Listing>
+﻿@model Jobweb.Models.Search
 
 @{
     ViewBag.Title = "Busqueda";
@@ -6,22 +6,22 @@
 }
 
 <div class="row row-cols-1 row-cols-md-2">
-    @foreach (var item in Model)
+    @foreach (var item in Model.PaginatedBlogs())
     {
         <div class="col mb-4">
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        @{ 
+                        @{
                             string ruta = Server.MapPath("~");
                             ruta += "\\Assets\\" + item.logo;
                             if (item.logo != null && (item.logo.Contains("jpg") || item.logo.Contains("png")) && File.Exists(ruta))
                             {
-                            <img src="~/Assets/@item.logo" class="card-img">
+                                <img src="~/Assets/@item.logo" class="card-img">
                             }
                             else
                             {
-                            <img src="~/Assets/placeholder.png" class="card-img">
+                                <img src="~/Assets/placeholder.png" class="card-img">
                             }
                         }
                     </div>
@@ -37,4 +37,16 @@
             </div>
         </div>
     }
+</div>
+
+<div class="row h-100 justify-content-center align-items-center">
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.PageCount(); i++)
+        {
+            <li class="@(i == Model.CurrentPage ? "page-item active" : "page-item")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+
+        }
+    </ul>
 </div>

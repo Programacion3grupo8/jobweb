@@ -135,6 +135,7 @@
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Listing.cs" />
     <Compile Include="Models\PuestoTrabajo.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
